@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+#video{
+    border-radius: 8px;
+    height: 30vh;
+}
+.cam{
+    margin-top: 200px;
+    padding: 8px;
+    background-color: #888;
+    color: #fff;
+    box-shadow: 0 0 8px #000;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.cam:hover{
+    background-color: #444;
+    color: #aaa;
+}

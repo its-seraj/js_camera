@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- stream video via webcam -->
+    <div class="video">
+        <video id="video"  autoplay></video>
+    </div>
+    <div class="cam">Open Camera</div>
+    
+    <script>
+        var video = document.querySelector("#video");
+        var click = document.querySelector(".cam");
+
+        var count = 2;
+        var localstream;
+        
+        click.addEventListener("click", function(){
+            if(count % 2 == 0){
+                count++;
+                video.style.display = "block";
+                var options = { 
+                    audio:true,
+                    video: {
+                        height: 150,
+                        width: 120,
+                        framerate: 160
+                    }
+                };  
+                navigator.mediaDevices.getUserMedia(options)
+                .then(stream => {
+                    video.srcObject = stream;
+                }, function(e) { 
+                    console.log("background error : " + e.name);
+                }); 
+                click.innerHTML = "Close Camera";
+            }
+            else{
+                count++;
+                const video = document.querySelector('video');
+                const mediaStream = video.srcObject;
+                const tracks = mediaStream.getTracks();
+                tracks[0].stop();
+                tracks.forEach(track => track.stop());
+                video.style.display = "none";
+                click.innerHTML = "Open Camera";
+            }
+        });
+        
+    </script>
+</body>
+</html>
